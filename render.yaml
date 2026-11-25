@@ -1,0 +1,16 @@
+# Настройки для хостинга Render (https://render.com): New → Blueprint → выбрать этот репозиторий.
+services:
+  - type: web
+    name: salem-dosym
+    runtime: node
+    plan: free
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: DATABASE_URL          # строка подключения PostgreSQL (например, бесплатная база Neon)
+        sync: false
+      - key: TEACHER_SIGNUP_CODE   # секретный код, без которого нельзя зарегистрироваться учителем
+        sync: false
